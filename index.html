@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Valentine ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(-45deg, #ff758c, #ff7eb3, #ff9a9e, #fad0c4);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    overflow: hidden;
+    text-align: center;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#screen1, #screen2, #screen3, #screen4, #finalScreen {
+    display: none;
+    flex-direction: column;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-10vh) scale(1.5);
+        opacity: 0;
+    }
+}
+
+#finalScreen h1 {
+    font-size: 50px;
+    font-weight: bold;
+    animation: pulse 1.5s infinite, glow 2s ease-in-out infinite;
+    text-align: center;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes glow {
+    0%,100% { text-shadow: 0 0 10px #fff, 0 0 20px #ff4e7a, 0 0 30px #ff758c; }
+    50% { text-shadow: 0 0 20px #fff, 0 0 30px #ff4e7a, 0 0 40px #ff758c; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Screens -->
+<div id="screen1" class="screen">
+    <h1>Here is the surprise for you ❤️</h1>
+    <h1>I Love You <br> my wife Tannu official name Tanya</h1>
+</div>
+
+<div id="screen2" class="screen">
+    <p id="proposalText"></p>
+</div>
+
+<div id="screen3" class="screen">
+    <p id="shayari"></p>
+</div>
+
+<div id="screen4" class="screen">
+    <h1>I Love You <br> meri Tannu</h1>
+    <h2>Happy Valentine’s Day ❤️</h2>
+    <p>Vese toh hum dono ko hi kuch khas interest nahi hai is valentine week ya day me cuz pyar ek din nhi humesha hota h, lekin fir bhi tumhare liye thoda sa try kiya. Hope tumhe acha laga ho ❤️</p>
+</div>
+
+<div id="finalScreen" class="screen">
+    <h1>❤️ I Love You <br> Tannu ❤️</h1>
+</div>
+
+<!-- Music -->
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5fbc3f21c4.mp3?filename=romantic-ambient-11054.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Hearts animation
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => { heart.remove(); }, 6000);
+}
+setInterval(createHeart, 300);
+
+// Screens logic
+const screens = ["screen1","screen2","screen3","screen4","finalScreen"];
+
+const proposalText = `Will you be mine forever?  
+Sirf is Valentine nahi balki har din, saal m chahe 365 ho ya 366 din, halat easy ho ya mushkil, kya tum humesha mera sath dogi, mere sath rhogi?  
+Bss meri ho, har din, har hafta, har ghanta, har minute, har second, har lamha, in short puri life.  
+Aur sirf is life nahi, jese tumne kaha tha har janam, chahe insan bane, chahe titli, chahe bird, jo bhi bane, tumhe m hi chahiye hu bss.`;
+
+const shayariText = `Khte h k gulaab saa fool nhi, 
+Chaand sa noor nhi,
+K khte h k gulaab sa fool nhi, chaad sa kahi Noor nhi 
+Or tu hi h gulab-e-chaand mera, 
+ab mujhe or kisi k justjoo, aarzu nhi`;
+
+let proposalIndex = 0;
+let shayariIndex = 0;
+
+function showScreen(id){
+    screens.forEach(s => document.getElementById(s).style.display = "none");
+    document.getElementById(id).style.display = "flex";
+}
+
+// Typing effect for proposal
+function typeProposal() {
+    if(proposalIndex < proposalText.length){
+        document.getElementById("proposalText").innerHTML += proposalText.charAt(proposalIndex);
+        proposalIndex++;
+        setTimeout(typeProposal, 40);
+    } else {
+        setTimeout(()=>{ showScreen("screen3"); typeShayari(); }, 1000);
+    }
+}
+
+// Typing effect for shayari
+function typeShayari() {
+    if(shayariIndex < shayariText.length){
+        document.getElementById("shayari").innerHTML += shayariText.charAt(shayariIndex);
+        shayariIndex++;
+        setTimeout(typeShayari, 50);
+    } else {
+        setTimeout(()=>{ showScreen("screen4"); }, 1000);
+    }
+}
+
+// Start sequence
+window.onload = () => {
+    showScreen("screen1");
+    document.getElementById("bgMusic").play();
+    setTimeout(()=>{ showScreen("screen2"); typeProposal(); }, 2500);
+};
+
+// Final cinematic screen after approx 25s
+setTimeout(()=>{ showScreen("finalScreen"); }, 25000);
+
+</script>
+
+</body>
+</html>
