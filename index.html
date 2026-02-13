@@ -17,6 +17,7 @@ animation:bg 12s ease infinite;
 color:white;
 text-align:center;
 }
+
 @keyframes bg{
 0%{background-position:0% 50%;}
 50%{background-position:100% 50%;}
@@ -32,10 +33,10 @@ justify-content:center;
 align-items:center;
 flex-direction:column;
 padding:20px;
-overflow-y:auto; /* scroll if content long */
+overflow-y:auto;
 }
 
-h1{font-size:34px;}
+h1{font-size:34px;margin-bottom:15px;}
 p{font-size:18px;white-space:pre-line;line-height:1.6;text-align:center;}
 
 .tap{
@@ -140,21 +141,21 @@ animation:boom 1.5s ease forwards;
 <div id="s5" class="screen">
 <p>
 Tannu... I know m perfect nhi hu bht sari kamiyan h khoobiyan bhi h but m tumhare liye apna best krna chahta hu...
-<br><br>
+<br>
 jb tum meri vjh se roti ho toh ksm se toot jata h andar,
 tum naraj hoti ho toh bht buri halat ho jati h...
-<br><br>
+<br>
 please apne is pagal bache se zyada naraj nhi hua kro yrr ❤️
-<br><br>
+<br>
 I'm sorry for everything...
 meri har mistake ke liye...
-<br><br>
+<br>
 Thank you so so much for being there...
 ye sirf words nahi feeling h ❤️
-<br><br>
+<br>
 jese Mahadev ne vish peeya tha
 aur Maa Gaura ne unka kanth sambhala tha...
-<br><br>
+<br>
 waise hi tum humesha mera sath deti rhi ho...
 aur main chahunga tum humesha mere sath raho ❤️
 </p>
@@ -231,7 +232,7 @@ typing=false;
 write();
 }
 
-// Heart animation
+// Hearts animation
 function hearts(){
 let h=document.createElement("div");
 h.className="heart";
@@ -245,7 +246,7 @@ setInterval(hearts,300);
 // Show first screen
 show(current);
 
-// Click to advance & start audio
+// Click to advance & play audio
 document.body.addEventListener("click", function(){
 
 if(typing) return;
@@ -253,7 +254,7 @@ if(typing) return;
 const bg = document.getElementById("bgMusic");
 const hb = document.getElementById("heartbeat");
 
-// 🔹 First tap → start music & heartbeat
+// 🔹 First tap → play music
 if(current===0){
 bg.play().catch(()=>console.log("BG Music blocked"));
 hb.play().catch(()=>console.log("Heartbeat blocked"));
