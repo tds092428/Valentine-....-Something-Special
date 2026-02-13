@@ -10,17 +10,12 @@ margin:0; padding:0; height:100vh; overflow:hidden; font-family:'Segoe UI',sans-
 background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
 background-size:400% 400%; animation:bg 12s ease infinite; color:white; text-align:center;
 }
-@keyframes bg{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
+@keyframes bg{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 
-.screen{
-position:absolute; width:100%; height:100%; display:none; justify-content:center; align-items:center; flex-direction:column; padding:20px; overflow-y:auto;
-}
+.screen{position:absolute; width:100%; height:100%; display:none; justify-content:center; align-items:center; flex-direction:column; padding:20px; overflow-y:auto;}
 
 h1{font-size:34px;margin-bottom:15px;}
+h2{font-size:24px;margin-bottom:15px;}
 p{font-size:18px;white-space:pre-line;line-height:1.6;text-align:center;}
 
 .tap{position:absolute;bottom:20px;font-size:14px;opacity:0.8;}
@@ -40,14 +35,10 @@ p{font-size:18px;white-space:pre-line;line-height:1.6;text-align:center;}
 .ring{font-size:80px;animation:pulse 1.5s infinite;}
 @keyframes pulse{50%{transform:scale(1.3);}}
 
-button{
-padding:12px 25px; font-size:18px; border:none; border-radius:30px; background:#ff2e63; color:white; cursor:pointer;
-}
+button{padding:12px 25px; font-size:18px; border:none; border-radius:30px; background:#ff2e63; color:white; cursor:pointer;}
 
 /* hearts animation */
-.heart{
-position:absolute; bottom:-20px; font-size:20px; animation:float 6s linear infinite;
-}
+.heart{position:absolute; bottom:-20px; font-size:20px; animation:float 6s linear infinite;}
 @keyframes float{from{transform:translateY(0);} to{transform:translateY(-120vh);}}
 
 /* confetti */
@@ -86,8 +77,7 @@ position:absolute; bottom:-20px; font-size:20px; animation:float 6s linear infin
 </div>
 
 <div id="s4" class="screen">
-<h2 class="fadeIn">Kuch likha h tumhare liye... tumne kaha tha na ... hope tumhe psnd aaye tum pdho fir m sunaunga</h2>
-<div class="kiss">💏</div>
+<h2 id="shayariHeading" class="fadeIn">Kuch likha h tumhare liye... tumne kaha tha na ... hope tumhe psnd aaye tum pdho fir m sunaunga</h2>
 <p id="shayariText"></p>
 <div class="tap fadeIn">Tap to continue ❤️</div>
 </div>
@@ -105,15 +95,13 @@ position:absolute; bottom:-20px; font-size:20px; animation:float 6s linear infin
 
 <div id="s7" class="screen">
 <p id="readyText"></p>
-<button onclick="acceptLove()">YES toh jhelo ab 😘❤️🥰</button>
+<button id="yesBtn">YES toh jhelo ab 😘❤️🥰</button>
 </div>
 
 <div id="s8" class="screen">
-<h1 id="finalLove">❤️ I Love You Forever and Ever and Ever ❤️</h1>
+<h1 id="finalLove"></h1>
 <h2>Once again Happy Valentine’s Day ❤️</h2>
-<p>
-Vese toh hum dono ko hi kuch khas interest nahi hai, lekin fir bhi tumhare liye thoda sa try kiya. Hope tumhe acha laga ho ❤️
-</p>
+<p>Vese toh hum dono ko hi kuch khas interest nahi hai, lekin fir bhi tumhare liye thoda sa try kiya. Hope tumhe acha laga ho ❤️</p>
 </div>
 
 <!-- Audio -->
@@ -129,7 +117,7 @@ const screens=["s1","s2","s3","s4","s5","s6","s7","s8"];
 let current=0;
 let typing=false;
 
-// Proposal & Shayari & Emotional Messages
+// Texts
 const proposalText=`Will you be mine forever?,
 Sirf is Valentine nahi balki har din, saal m chahe 365 ho ya 366 din, har din, har hafte, har mahine, har ghante, har second, har lamha in short puri life,
 halat easy ho ya mushkil, kya tum humesha mera sath dogi?,
@@ -137,62 +125,44 @@ Jesa tumne kaha tha k har janam chahe insan bane, chahe titli, chahe bird,
 tumhe m hi chahiye hu vese hi mujhe bhi tum hi chahiye ho ❤️`;
 
 const shayariText=`Kehte hain gulaab sa koi phool nahi,
-Chaand sa koi noor nahi,
-K Kehte hain gulaab sa koi phool nahi or Chaand sa koi noor nahi,
-Tu hi h gulab-e-chaand mera,
-Tere siwa ab mujhe kisi aur ki aarzoo nahi ❤️`;
+Chaand sa kahi noor nahi,
+K Kehte hain gulaab sa koi phool nahi or Chaand sa kahi noor nahi,
+or tu hi h gulab-e-chaand mera,
+kya.. k tu hi h ab toh gulab-e-chand mera,
+or tere siwa ab to mujhe kisi aur ki aarzoo nahi ❤️`;
 
 const emotionalText=`Tannu, I know m perfect nhi hu, bht sari kamiyan h, khoobiyan bhi h but m tumhare liye apna best krna chahta hu,
 jb tum meri vjh se roti ho toh ksm se toot jata h andar,
 tum naraj hoti ho toh bht buri halat ho jati h,
-please apne is pagal bache se zyada naraj nhi hua kro yrr ❤️,
+please apne is pagal bache se zyada naraj nhi hua kro yrr please yrrr kabhi dur mt krna mujhe khud se .. plsss......❤️,
 I'm sorry for everything,
 meri har mistake ke liye,
 Thank you so so much for being there,
 ye sirf words nahi feeling h ❤️,
-jese Mahadev ne vish peeya tha aur Maa Gaura ne unka kanth sambhala tha,
-waise hi tum humesha mera sath deti rhi ho,
+jese Mahadev ne halal vish peeya tha aur Maa Gaura ne unka kanth par hath rakh k unhe sambhala tha,
+waise hi tum humesha mera sath deti rhi ho sambhalti ho har problem m,
 aur main chahunga tum humesha mere sath raho ❤️`;
 
 const foreverText=`Will You Stay With Me Forever?`;
 const readyText=`Sari zindagi, har janam tumhe hi jhelna h mujhe 😏💖 Ready ho...?`;
+const finalLove=`❤️ I Love You Forever and Ever and Ever ❤️`;
 
 // Show screen
-function show(i){
-screens.forEach(id=>document.getElementById(id).style.display="none");
-document.getElementById(screens[i]).style.display="flex";
-}
+function show(i){screens.forEach(id=>document.getElementById(id).style.display="none");document.getElementById(screens[i]).style.display="flex";}
 
 // Typing effect (line by line)
 function typeEffect(id,text,speed){
 typing=true;
-let i=0;
-let el=document.getElementById(id);
-el.innerHTML="";
-function write(){
-if(i<text.length){
-el.innerHTML+=text.charAt(i);
-i++;
-setTimeout(write,speed);
-}else{
-typing=false;
-}
-}
+let i=0; let el=document.getElementById(id); el.innerHTML="";
+function write(){ if(i<text.length){el.innerHTML+=text.charAt(i); i++; setTimeout(write,speed);} else {typing=false;} }
 write();
 }
 
 // Hearts animation
-function hearts(){
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="❤️";
-h.style.left=Math.random()*100+"vw";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),6000);
-}
+function hearts(){let h=document.createElement("div");h.className="heart";h.innerHTML="❤️";h.style.left=Math.random()*100+"vw";document.body.appendChild(h);setTimeout(()=>h.remove(),6000);}
 setInterval(hearts,300);
 
-// Initial screen
+// Show initial screen
 show(current);
 
 // Click to advance & play audio
@@ -202,77 +172,45 @@ if(typing) return;
 const bg = document.getElementById("bgMusic");
 const hb = document.getElementById("heartbeat");
 
-// First tap → start music
-if(current===0){
-bg.play().catch(()=>console.log("BG Music blocked"));
-hb.play().catch(()=>console.log("Heartbeat blocked"));
-}
+if(current===0){ bg.play().catch(()=>{}); hb.play().catch(()=>{});}
 
 current++;
 
 // Proposal screen
-if(current===2){
-show(current);
-typeEffect("proposalText",proposalText,40);
-return;
-}
+if(current===2){show(current);typeEffect("proposalText",proposalText,40);return;}
 
-// Shayari screen
+// Shayari screen → heading first
 if(current===3){
 show(current);
-typeEffect("shayariText",shayariText,50);
+document.getElementById("shayariText").innerHTML="";
+setTimeout(()=>{typeEffect("shayariText",shayariText,50);},800);
 return;
 }
 
 // Emotional screen
-if(current===4){
-show(current);
-typeEffect("emotionalText",emotionalText,40);
-return;
-}
+if(current===4){show(current);typeEffect("emotionalText",emotionalText,40);return;}
 
 // Forever screen
-if(current===5){
-show(current);
-typeEffect("foreverText",foreverText,50);
-return;
-}
+if(current===5){show(current);typeEffect("foreverText",foreverText,50);return;}
 
-// Ready screen
-if(current===6){
-show(current);
-typeEffect("readyText",readyText,50);
-return;
-}
-
-// Other screens
-if(current<screens.length){
-show(current);
-}
+// Ready screen (YES button)
+if(current===6){show(current);typeEffect("readyText",readyText,40);return;}
 });
 
-// YES button confetti/fireworks
-function acceptLove(){
+// YES button click → final screen + confetti/fireworks
+document.getElementById("yesBtn").addEventListener("click",function(){
 show(7);
+typeEffect("finalLove",finalLove,60);
+
 setInterval(()=>{
-let c=document.createElement("div");
-c.className="confetti";
-c.innerHTML="💖";
-c.style.left=Math.random()*100+"vw";
-document.body.appendChild(c);
-setTimeout(()=>c.remove(),3000);
+let c=document.createElement("div");c.className="confetti";c.innerHTML="💖";c.style.left=Math.random()*100+"vw";document.body.appendChild(c);setTimeout(()=>c.remove(),3000);
 },200);
 
 setInterval(()=>{
-let f=document.createElement("div");
-f.className="fire";
-f.innerHTML="🎆";
-f.style.left=Math.random()*100+"vw";
-f.style.top=Math.random()*80+"vh";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),1500);
+let f=document.createElement("div");f.className="fire";f.innerHTML="🎆";f.style.left=Math.random()*100+"vw";f.style.top=Math.random()*80+"vh";document.body.appendChild(f);setTimeout(()=>f.remove(),1500);
 },400);
-}
+});
+
 </script>
 
 </body>
