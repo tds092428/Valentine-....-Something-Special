@@ -11,16 +11,16 @@ padding:0;
 height:100vh;
 overflow:hidden;
 font-family:'Segoe UI',sans-serif;
-background:linear-gradient(135deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
+background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
 background-size:400% 400%;
-animation:bg 12s infinite alternate;
+animation:bg 12s ease infinite;
 color:white;
 text-align:center;
-transition:1s;
 }
 @keyframes bg{
 0%{background-position:0% 50%;}
-100%{background-position:100% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
 .screen{
@@ -34,23 +34,48 @@ flex-direction:column;
 padding:20px;
 }
 
-h1{font-size:36px;text-shadow:0 0 20px #fff;}
-h2{font-size:26px;}
-p{font-size:18px;line-height:1.7;white-space:pre-line;max-width:95%;}
+h1{font-size:34px;}
+p{font-size:18px;white-space:pre-line;line-height:1.6;}
 
-.tap{position:absolute;bottom:20px;font-size:14px;opacity:0.8;}
+.tap{
+position:absolute;
+bottom:20px;
+font-size:14px;
+opacity:0.8;
+}
 
 .glow{
-font-size:45px;
-text-shadow:0 0 15px #fff,0 0 35px #ff2e63;
+font-size:42px;
 animation:glow 1.5s infinite alternate;
 }
 @keyframes glow{
 from{text-shadow:0 0 10px #fff;}
-to{text-shadow:0 0 40px #ff2e63;}
+to{text-shadow:0 0 30px #ff2e63;}
 }
 
-/* Floating Hearts Full Screen */
+.teddy{font-size:90px;animation:bounce 2s infinite;}
+@keyframes bounce{50%{transform:translateY(-15px);}}
+
+.hug{font-size:80px;animation:zoom 2s infinite;}
+@keyframes zoom{50%{transform:scale(1.2);}}
+
+.kiss{font-size:80px;animation:rotate 2s infinite;}
+@keyframes rotate{50%{transform:rotate(10deg);}}
+
+.ring{font-size:80px;animation:pulse 1.5s infinite;}
+@keyframes pulse{50%{transform:scale(1.3);}}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#ff2e63;
+color:white;
+cursor:pointer;
+}
+
+/* hearts */
 .heart{
 position:absolute;
 bottom:-20px;
@@ -62,52 +87,17 @@ from{transform:translateY(0);}
 to{transform:translateY(-120vh);}
 }
 
-/* Sparkle */
-.sparkle{
-position:absolute;
-top:-10px;
-font-size:15px;
-animation:fall 5s linear infinite;
-}
-@keyframes fall{
-to{transform:translateY(110vh);}
-}
-
-/* Animations */
-.teddy{font-size:100px;animation:bounce 2s infinite;}
-@keyframes bounce{50%{transform:translateY(-20px);}}
-
-.hug{font-size:90px;animation:zoom 2s infinite;}
-.kiss{font-size:90px;animation:rotate 2s infinite;}
-.ring{font-size:90px;animation:pulse 1.5s infinite;}
-
-@keyframes zoom{50%{transform:scale(1.2);}}
-@keyframes rotate{50%{transform:rotate(10deg);}}
-@keyframes pulse{50%{transform:scale(1.3);}}
-
-/* Button */
-button{
-padding:12px 25px;
-font-size:18px;
-border:none;
-border-radius:30px;
-background:#ff2e63;
-color:white;
-cursor:pointer;
-box-shadow:0 0 20px #fff;
-}
-
-/* Confetti */
+/* confetti */
 .confetti{
 position:absolute;
 font-size:20px;
-animation:conf 3s linear forwards;
+animation:fall 3s linear forwards;
 }
-@keyframes conf{
+@keyframes fall{
 to{transform:translateY(110vh) rotate(720deg);opacity:0;}
 }
 
-/* Firework */
+/* fireworks */
 .fire{
 position:absolute;
 font-size:30px;
@@ -121,13 +111,11 @@ animation:boom 1.5s ease forwards;
 
 <body>
 
-<!-- 1 -->
 <div id="s1" class="screen">
 <h1>Here is the surprise for you ❤️</h1>
 <div class="tap">Tap ❤️</div>
 </div>
 
-<!-- 2 -->
 <div id="s2" class="screen">
 <h1>I Love You</h1>
 <div class="glow">Tannu ❤️</div>
@@ -135,54 +123,48 @@ animation:boom 1.5s ease forwards;
 <div class="tap">Tap ❤️</div>
 </div>
 
-<!-- 3 Proposal Full -->
 <div id="s3" class="screen">
 <div class="hug">👩‍❤️‍👨</div>
 <p id="proposalText"></p>
-<div class="tap">Tap ❤️</div>
+<div class="tap">Wait for it ❤️</div>
 </div>
 
-<!-- 4 Shayari -->
 <div id="s4" class="screen">
 <div class="kiss">💏</div>
 <p id="shayariText"></p>
-<div class="tap">Tap ❤️</div>
+<div class="tap">Wait for it ❤️</div>
 </div>
 
-<!-- 5 Emotional Message -->
 <div id="s5" class="screen">
 <p>
-Tannu... I know m perfect nhi hu bht sari kamiyan h khoobiyan bhi h  
-but m tumhare liye apna best krna chahta hu...  
+Tannu... I know m perfect nhi hu bht sari kamiyan h khoobiyan bhi h but m tumhare liye apna best krna chahta hu...
 
-jb tum meri vjh se roti ho toh ksm se toot jata h andar  
-tum naraj hoti ho toh bht buri halat ho jati h  
+jb tum meri vjh se roti ho toh ksm se toot jata h andar,
+tum naraj hoti ho toh bht buri halat ho jati h...
 
-please apne is pagal bache se zyada naraj nhi hua kro yrr ❤️  
+please apne is pagal bache se zyada naraj nhi hua kro yrr ❤️
 
-I'm sorry for everything...  
-meri har mistake k liye...  
+I'm sorry for everything...
+meri har mistake k liye...
 
-Thank you so so much for being there...  
-ye sirf words nhi feeling h ❤️  
+Thank you so so much for being there...
+ye sirf words nhi feeling h ❤️
 
-jese Mahadev ne vish peeya tha  
-aur Maa Gaura ne unka kanth sambhala tha...  
+jese Mahadev ne vish peeya tha
+aur Maa Gaura ne unka kanth sambhala tha...
 
-waise hi tum humesha mera sath deti rhi ho...  
+waise hi tum humesha mera sath deti rhi ho...
 aur main chahunga tum humesha mere sath raho ❤️
 </p>
 <div class="tap">Tap ❤️</div>
 </div>
 
-<!-- 6 Proposal Question -->
 <div id="s6" class="screen">
 <div class="ring">💍</div>
 <h1>Will You Stay With Me Forever?</h1>
 <div class="tap">Tap ❤️</div>
 </div>
 
-<!-- 7 Accept -->
 <div id="s7" class="screen">
 <p>
 Sari zindagi, har janam tumhe hi jhelna h mujhe 😏💖  
@@ -191,7 +173,6 @@ Ready ho...?
 <button onclick="acceptLove()">YES toh jhelo ab 😘❤️🥰</button>
 </div>
 
-<!-- 8 Final -->
 <div id="s8" class="screen">
 <h1>❤️ I Love You Forever and Ever and Ever ❤️</h1>
 </div>
@@ -208,16 +189,17 @@ Ready ho...?
 
 const screens=["s1","s2","s3","s4","s5","s6","s7","s8"];
 let current=0;
+let typing=false;
 
-const proposal=`Will you be mine forever?  
-Sirf is Valentine nahi balki har din, saal m chahe 365 ho ya 366 din,  
-halat easy ho ya mushkil, kya tum humesha mera sath dogi?  
-Har janam, chahe insan bane ya titli,  
+const proposalText=`Will you be mine forever?
+Sirf is Valentine nahi balki har din, saal m chahe 365 ho ya 366 din,
+halat easy ho ya mushkil, kya tum humesha mera sath dogi?
+Har janam chahe insan bane, chahe titli, chahe bird,
 mujhe tum hi chahiye ❤️`;
 
-const shayari=`Kehte hain gulaab sa koi phool nahi,  
-Chaand sa koi noor nahi,  
-Tu hi h gulab-e-chaand mera,  
+const shayariText=`Kehte hain gulaab sa koi phool nahi,
+Chaand sa koi noor nahi,
+Tu hi h gulab-e-chaand mera,
 Ab mujhe kisi aur ki justjoo nahi ❤️`;
 
 function show(i){
@@ -225,39 +207,54 @@ screens.forEach(id=>document.getElementById(id).style.display="none");
 document.getElementById(screens[i]).style.display="flex";
 }
 
-function type(id,text,speed){
+function typeEffect(id,text,speed){
+typing=true;
 let i=0;
 let el=document.getElementById(id);
 el.innerHTML="";
-function typing(){
+function write(){
 if(i<text.length){
 el.innerHTML+=text.charAt(i);
 i++;
-setTimeout(typing,speed);
+setTimeout(write,speed);
+}else{
+typing=false;
 }
 }
-typing();
+write();
 }
 
 document.body.addEventListener("click",function(){
+
 if(current===0){
-document.getElementById("music").play();
+document.getElementById("music").play().catch(()=>{});
 }
-if(current===2){
-document.getElementById("heartbeat").play();
-type("proposalText",proposal,40);
-}
-if(current===3){
-type("shayariText",shayari,50);
-}
-if(current<6){
+
+if(typing) return;
+
 current++;
+
+if(current===2){
+document.getElementById("heartbeat").play().catch(()=>{});
+show(current);
+typeEffect("proposalText",proposalText,40);
+return;
+}
+
+if(current===3){
+show(current);
+typeEffect("shayariText",shayariText,50);
+return;
+}
+
+if(current<screens.length){
 show(current);
 }
 });
 
 function acceptLove(){
 show(7);
+
 setInterval(()=>{
 let c=document.createElement("div");
 c.className="confetti";
@@ -278,7 +275,7 @@ setTimeout(()=>f.remove(),1500);
 },400);
 }
 
-function heart(){
+function hearts(){
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="❤️";
@@ -286,17 +283,7 @@ h.style.left=Math.random()*100+"vw";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
 }
-setInterval(heart,300);
-
-function sparkle(){
-let s=document.createElement("div");
-s.className="sparkle";
-s.innerHTML="✨";
-s.style.left=Math.random()*100+"vw";
-document.body.appendChild(s);
-setTimeout(()=>s.remove(),5000);
-}
-setInterval(sparkle,400);
+setInterval(hearts,300);
 
 show(current);
 
