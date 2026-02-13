@@ -32,10 +32,11 @@ justify-content:center;
 align-items:center;
 flex-direction:column;
 padding:20px;
+overflow-y:auto; /* scroll if content long */
 }
 
 h1{font-size:34px;}
-p{font-size:18px;white-space:pre-line;line-height:1.6;}
+p{font-size:18px;white-space:pre-line;line-height:1.6;text-align:center;}
 
 .tap{
 position:absolute;
@@ -146,10 +147,10 @@ tum naraj hoti ho toh bht buri halat ho jati h...
 please apne is pagal bache se zyada naraj nhi hua kro yrr ❤️
 <br><br>
 I'm sorry for everything...
-meri har mistake k liye...
+meri har mistake ke liye...
 <br><br>
 Thank you so so much for being there...
-ye sirf words nhi feeling h ❤️
+ye sirf words nahi feeling h ❤️
 <br><br>
 jese Mahadev ne vish peeya tha
 aur Maa Gaura ne unka kanth sambhala tha...
@@ -187,7 +188,7 @@ lekin fir bhi tumhare liye thoda sa try kiya. Hope tumhe acha laga ho ❤️
 <audio id="bgMusic" loop>
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5fbc3f21c4.mp3" type="audio/mpeg">
 </audio>
-<audio id="heartbeat">
+<audio id="heartbeat" loop>
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_eb4f8a1b2c.mp3" type="audio/mpeg">
 </audio>
 
@@ -197,12 +198,13 @@ let current=0;
 let typing=false;
 
 const proposalText=`Will you be mine forever?
-Sirf is Valentine nahi balki har din, saal m chahe 365 ho ya 366 din,
+Sirf is Valentine nahi balki har din, saal m chahe 365 ho ya 366 din, har din, har hafte, har mahine, har ghante, har second, har lamha in short puri life 
 halat easy ho ya mushkil, kya tum humesha mera sath dogi?
-Har janam chahe insan bane, chahe titli, chahe bird,
-mujhe tum hi chahiye ❤️`;
+Jesa tumne kaha tha k har janam chahe insan bane, chahe titli, chahe bird, 
+tumhe m hi chahiye hu vese hi mujhe bhi tum hi chahiye ho ❤️`;
 
-const shayariText=`Kehte hain gulaab sa koi phool nahi,
+const shayariText=`Kuch likha h tumhare liye... tumne kaha tha na ... hope tumhe psnd aaye
+Kehte hain gulaab sa koi phool nahi,
 Chaand sa koi noor nahi,
 Tu hi h gulab-e-chaand mera,
 Ab mujhe kisi aur ki justjoo nahi ❤️`;
@@ -243,32 +245,44 @@ setInterval(hearts,300);
 // Show first screen
 show(current);
 
-// Click to advance
+// Click to advance & start audio
 document.body.addEventListener("click", function(){
 
 if(typing) return;
 
-if(current===0){document.getElementById("bgMusic").play().catch(()=>{});}
+const bg = document.getElementById("bgMusic");
+const hb = document.getElementById("heartbeat");
+
+// 🔹 First tap → start music & heartbeat
+if(current===0){
+bg.play().catch(()=>console.log("BG Music blocked"));
+hb.play().catch(()=>console.log("Heartbeat blocked"));
+}
+
 current++;
 
+// Proposal screen
 if(current===2){
 show(current);
-document.getElementById("heartbeat").play().catch(()=>{});
 typeEffect("proposalText",proposalText,40);
 return;
 }
 
+// Shayari screen
 if(current===3){
 show(current);
 typeEffect("shayariText",shayariText,50);
 return;
 }
 
+// Other screens
 if(current<screens.length){
 show(current);
 }
+
 });
 
+// YES button confetti/fireworks
 function acceptLove(){
 show(7);
 
