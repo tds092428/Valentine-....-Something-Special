@@ -3,6 +3,13 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forever My Tannu ❤️</title>
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5fbc3f21c4.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="heartbeat">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_eb4f8a1b2c.mp3" type="audio/mpeg">
+</audio>
 
 <style>
 body{
@@ -125,27 +132,31 @@ animation:boom 1.5s ease forwards;
 
 <div id="s3" class="screen">
 <div class="hug">👩‍❤️‍👨</div>
+<div id="s4" class="screen">
 <p> 
   `Will you be mine forever?,
-Sirf is Valentine nahi balki har din, saal m chahe 365 ho ya 366 din,
+Sirf is Valentine nahi balki har din, saal m chahe 365 ho ya 366 din har mahina har hafta har din har ghante har minute har second har lamha in short puri life,
 halat easy ho ya mushkil, kya tum humesha mera sath dogi?
-Har janam chahe insan bane, chahe titli, chahe bird,
-mujhe tum hi chahiye ❤️`;</p>
-<div class="tap">Wait for it ❤️</div>
-</div>
-
-<div id="s4" class="screen">
-<div class="kiss">💏</div>
-<p> 
-  `Kehte hain gulaab sa koi phool nahi,
-Chaand sa koi noor nahi,
-Tu hi h gulab-e-chaand mera,
-Ab mujhe kisi aur ki justjoo nahi ❤️`;
-</p>
+Or tum jese boli thi har janam chahe insan bane, chahe titli, chahe bird,
+tumhe m hi chahiye ❤️`;</p>
 <div class="tap">Wait for it ❤️</div>
 </div>
 
 <div id="s5" class="screen">
+<div class="kiss">💏</div>
+<p> 
+<h1> Kuch Likha h tumhare liye... tumne kaha tha na hope so psnd aaye<h1>
+  `Kehte hain gulaab sa koi phool nahi,
+Chaand sa koi noor nahi,
+  K Kehte hain gulaab sa koi phool nahi,
+Chaand sa koi noor nahi,
+Tu hi h gulab-e-chaand mera,
+Ab mujhe kisi aur ki aarzoo nahi ❤️`;
+</p>
+<div class="tap">Wait for it ❤️</div>
+</div>
+
+<div id="s6" class="screen">
 <p>
 Tannu... I know m perfect nhi hu bht sari kamiyan h khoobiyan bhi h but m tumhare liye apna best krna chahta hu...
 
@@ -169,13 +180,13 @@ aur main chahunga tum humesha mere sath raho ❤️
 <div class="tap">Tap ❤️</div>
 </div>
 
-<div id="s6" class="screen">
+<div id="s7" class="screen">
 <div class="ring">💍</div>
 <h1>Will You Stay With Me Forever?</h1>
 <div class="tap">Tap ❤️</div>
 </div>
 
-<div id="s7" class="screen">
+<div id="s8" class="screen">
 <p>
 Sari zindagi, har janam tumhe hi jhelna h mujhe 😏💖  
 Ready ho...?
@@ -185,7 +196,7 @@ Ready ho...?
 
 <div id="s8" class="screen">
 <h1>❤️ I Love You Forever and Ever and Ever ❤️ <h1>
-  <h2>Happy Valentine’s Day ❤️</h2> 
+  <h2>Once again Happy Valentine’s Day ❤️</h2> 
   <p>`Vese toh hum dono ko hi kuch khas interest nahi hai, 
   lekin fir bhi tumhare liye thoda sa try kiya. Hope tumhe acha laga ho ❤️;</p> 
 </div>
@@ -236,13 +247,39 @@ typing=false;
 }
 }
 write();
-}
+document.body.addEventListener("click", function(){
 
-document.body.addEventListener("click",function(){
+  // 1️⃣ First tap → play background music
+  if(current === 0){
+    document.getElementById("bgMusic").play().catch(()=>{});
+  }
 
-if(current===0){
-document.getElementById("music").play().catch(()=>{});
-}
+  // Agar typing chal rahi ho, next screen mat jao
+  if(typing) return;
+
+  current++;
+
+  // 2️⃣ Proposal screen → heartbeat + typing
+  if(current === 2){
+    show(current); 
+    document.getElementById("heartbeat").play().catch(()=>{});
+    typeEffect("proposalText", proposalText, 40);
+    return;
+  }
+
+  // 3️⃣ Shayari screen → typing
+  if(current === 3){
+    show(current);
+    typeEffect("shayariText", shayariText, 50);
+    return;
+  }
+
+  // Other screens
+  if(current < screens.length){
+    show(current);
+  }
+
+});
 
 if(typing) return;
 
